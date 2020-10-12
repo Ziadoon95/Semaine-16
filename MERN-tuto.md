@@ -1,4 +1,4 @@
-# MERN 
+# MERN
 
 Salut à tous, je vous propose de suivre étape par étape ce court tutoriel introduisant au stack technique MERN.
 
@@ -8,14 +8,15 @@ Créez un nouveau dossier à l'emplacement de votre choix.
 Ouvrez un terminal et naviguez jusqu'à entrer dans ce dossier.
 Une fois fait, commencez pas créer un nouveau projet React à l'aide de la boite à outil [CF la documentation](https://fr.reactjs.org/docs/create-a-new-react-app.html)
 
-```
+```js
 npx create-react-app client
 ```
-Pour rappel: 
+
+Pour rappel:
+
 - **NPX** est l'installation portable des package NPM.
 - **Create-react-app** est la commande permettant d'utiliser la boîte à outils de react (pré-configuration des fichiers)
 - **client** suffixe destiné au nom que vous souhaitez donner à votre projet react. Dans ce cas ci nous utilisons le terme client car notre projet react n'est que la partie "client" de notre application
-
 
 ## Etape 2
 
@@ -27,27 +28,27 @@ Commencez par faire la liste des technologies dont vous avez besoin, puis recher
 Dans notre cas nous aurons besoin d'express, mongoose, le package cors, ainsi que body parser.
 Pour ne pas répéter indéfiniment les commandes d'installation vous pouvez simplement concaténer l'entierté des packages dont vous avez besoin en un npm install:
 
-```
+```js
 npm install express body-parser cors mongoose
 ```
 
 Nous allons également installer nodemon.
 Nodemon est un package permettant d'observer vos fichiers et ses changements lors du développement sur serveur local. Il vous permet ainsi de ne pas avoir à relancer systématiquement votre serveur pour chaque modification.
 
-```
+```js
 npm install nodemon
 ```
 
 ## Etape 3
 
-Jetez un coup d'oeil à votre arboressence de fichiers. 
+Jetez un coup d'oeil à votre arboressence de fichiers.
 A ce stade du tutoriel vous possédez un dossier client, un dossier node_modules dans lequel sont installés les fichier sources des différents packages que nous venons de télécharger.
 Un fichier package-lock.json contenant les meta informations des-dits packages.
 Un fichier package.json comportant la configuration générale de votre application.
 
 A la racine de votre dossier, créez un nouveau dossier appelé "server". Vous pouvez le créer à l'aide de votre terminal:
 
-```
+```js
 mkdir server
 ```
 
@@ -57,9 +58,9 @@ MongoDB est le système de base de donnée noSQL que nous allons utiliser pour c
 Si vous ne possédez pas encore son outils de visualisation (MongoDB Compass), je vous invite à le télécharger et l'installer via le lien suivant [Install MongoDB Server](https://www.mongodb.com/try/download/community?tck=docs_server) ainsi que celui ci afin d'installer le client Compass: [Install Compass](https://www.mongodb.com/try/download/compass)
 Lorsque votre outil est installé, clickez sur l'onglet "New connexion"
 
-Pour vous connecter à votre localhost tapez la commande suivante dans l'input prévu à cet effet:
+Pour vous connecter à votre localhost tapez la commande suivante dans l'input prévu à cet effet :
 
-```
+```js
 mongodb://localhost:27017
 ```
 
@@ -74,19 +75,19 @@ Vous pouvez maintenant naviguer, à l'aide de votre terminal, à l'intérieur de
 Nous allons créer un fichier server.js qui permettra de paramétrer notre serveur.
 Utilisez la commande suivante:
 
-```
+```js
 touch server.js
 ```
 
 Nous allons également créer un nouveau dossier DB au sein duquel nous allons configurer la connexion à la base de donnée.
 
-```
+```js
 mkdir DB
 ```
 
 Ensuite, au sein de ce dossier créez un fichier index.js
 
-```
+```js
 touch index.js
 ```
 
@@ -142,7 +143,7 @@ module.exports = db
 Rappel: un module est un bout de code réutilisable partout dans l'application à l'aide des méthodes exports et require.
 
 - 1. Pour nous connecter à notre base de donnée nous avons besoin du package mongoose qui permet de créer un lien entre node et mongoDB
-- 2. La fonction connect reçoit deux arguments, l'URL de connexion en premier, l'objet de configuration de l'autre. 
+- 2. La fonction connect reçoit deux arguments, l'URL de connexion en premier, l'objet de configuration de l'autre.
 - 3. Stockez la connexion au sein d'une variable afin de pouvoir l'importer facilement dans les fichiers où cela s'avère nécessaire
 
 ## Etape 7
@@ -150,13 +151,13 @@ Rappel: un module est un bout de code réutilisable partout dans l'application �
 Pour ce projet nous utilisons l'architecture MVC.
 Créez un dossier Models au sein de votre dossier server
 
-```
+```js
 mkdir models
 ```
 
 Puis naviguez à l'intérieur de ce nouveau dossier et créez un nouveau fichier todosModel.js
 
-```
+```js
 touch todosModel.js
 ```
 
@@ -186,12 +187,13 @@ Ensuite le schéma est appliqué à la méthode model, elle même exportée afin
 Nous allons maintenant configurer le router de notre serveur. Pour rappel le routeur côté serveur permet de configurer les URL de contact de notre base de donnée (Endpoints).
 A la racine de votre dossier server, créez un nouveau dossier nommé router
 
-```
+```js
 mkdir router
 ```
+
 Puis dans ce dossier, créez un nouveau fichier todosRouter.js
 
-```
+```js
 touch todosRouter.js
 ```
 
@@ -210,6 +212,7 @@ router.get('/', todoCtrl.getTodos)
 
 module.exports = router
 ```
+
 Nous utilisons le middleware router d'express, il vous faut donc importer express et stocker sa méthode router au sein d'une variable portant le même nom (pour plus de transparence).
 Comme vous pouvez le constater nous avons déjà préparé l'import du fichier contrôleur et de ses fonctions afin de définir les routes.
 Pour rappel une route est définie par l'URL, la fonction vers laquelle nous souhaitons rediriger l'appel, et le verbe HTTP qui y correspond.
@@ -220,11 +223,12 @@ Nous allons maintenant nous pencher sur la rédaction d'un contrôleur simple.
 
 Comme pour les étapes précédentes, créez un dossier à la racine du dossier server
 
-```
+```js
 mkdir controllers
 cd controllers
 touch todosController.js
 ```
+
 Puis copiez collez y le code suivant:
 
 ```js
@@ -276,6 +280,7 @@ getTodos = async (req, res) => {
 
 module.exports = {createItem, getTodos}
 ```
+
 Comme nous avons besoin du schéma de données de notre DB, commencez par importer votre modèle, c'est lui qui permettra de savoir où insérer votre requête au sein de la DB.
 Pour rappel, c'est au sein du contrôleur que vous insérez votre CRUD.
 
@@ -287,6 +292,7 @@ Ajoutez cette ligne à la fin de vos imports:
 ```js
 const todoRouter = require('./router/todoRouter')
 ```
+
 Ensuite, ajoutez la ligne suivante à la fin de votre fichier, juste avant la ligne activant le serveur (app.listen()).
 
 ```js
@@ -319,7 +325,7 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 
 ## Etape 11
 
-Nous allons maitenant tester nos requêtes. Pour ce faire téléchargez et installez [POSTMAN](https://www.postman.com/downloads/) 
+Nous allons maitenant tester nos requêtes. Pour ce faire téléchargez et installez [POSTMAN](https://www.postman.com/downloads/)
 Ouvrez l'application, dans le champs prévu insérez l'URL de votre API (localhost:3000/)
 
 Ensuite dans l'onglet body, sélectionnez l'item "raw", à l'extrême droite clickez sur la selection "text" et choisissez "JSON"
@@ -334,8 +340,7 @@ Dans l'espace dédié au corps de la requête insérez l'objet suivant
 
 Clickez sur "SEND" et récupérez la réponse de votre requête
 
-
-## Etape 12 
+## Etape 12
 
 Si vos requêtes fonctionnent, vous en avez terminé avec la partie serveur de votre application.
 Nous allons maintenant créer une interface utilisateur simple à l'aide de React.
@@ -344,7 +349,7 @@ Pour plus de facilité, nous allons utiliser Axios, une librairie JS permettant 
 
 Naviguez à l'intérieur de votre dossier client et tapez la commande suivante dans votre terminal:
 
-```
+```js
 npm install axios
 ```
 
@@ -360,7 +365,6 @@ import axios from 'axios';
 export class Todo extends Component {
     constructor(props) {
         super(props)
-    
         this.state = {
              todos : [],
              item : ""
@@ -408,7 +412,6 @@ export class Todo extends Component {
     }
   
     render() {
-        
         return (
             <div>
                 <input type="text" onChange={this.changeHandler}/>
@@ -446,12 +449,12 @@ Dans votre terminal, lancez votre serveur local client / votre serveur à l'aide
 
 Commencez par la le serveur
 
-```
+```js
 nodemon server/server.js
 ```
 
 Ensuite le client (n'oubliez pas d'ouvrir le terminal dans votre dossier client pour celui ci)
 
-```
+```js
 npm start
 ```
